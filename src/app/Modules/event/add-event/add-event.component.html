@@ -1,0 +1,31 @@
+<div id="Main" style="z-index: 0; width:100vw;height:100vh;background-color:rgba(0, 0, 0, 0.466); position:absolute;left:0px;top:0px; display: flex; flex-direction: column; align-items: center; justify-content: center;" (click)="closeComponent($event)">
+    <br>
+    <br>
+    <div class="card col-5 shadow">
+        <div class="card-header text-center">
+            Add Event
+        </div>
+        <div class="form-group m-3">
+            <label for="title">Title:</label>
+            <input class="form-control" [(ngModel)]="eventService.event.title" name="email" placeholder="title">
+            <label for="date">Date:</label>
+            <input class="form-control" [ngModel]="eventService.event.date | date:'y-MM-dd'" (ngModelChange)="DateParse($event)" name="date" type="date" placeholder="date">
+            <label for="mainSpeaker">Main Speaker:</label>
+            <select class="form-select" [(ngModel)]="eventService.event.mainSpeaker" name="mainSpeaker">
+                <option *ngFor="let mainspeaker of speakerService.speakers;" [value]="mainspeaker._id">{{mainspeaker.userName}}</option>
+            </select>
+            <label for="otherSpeakers">Other Speakers:</label>
+            <select class="form-select" multiple [(ngModel)]="eventService.event.otherSpeakers" name="otherSpeakers">
+                <option *ngFor="let otherSpeaker of speakerService.speakers;" [value]="otherSpeaker._id">{{otherSpeaker.userName}}</option>
+            </select>
+            <label for="students">Students:</label>
+            <select class="form-select" multiple [(ngModel)]="eventService.event.students" name="students">
+                <option *ngFor="let student of studentService.students;" [value]="student._id">{{student.userName}}</option>
+            </select>
+            <label>Accepted: </label>
+            <br>
+            <input type="checkbox" [(ngModel)]="eventService.event.accepted" name="accepted" placeholder="accepted">
+        </div>
+        <button class="btn btn-dark" (click)="addEvent()">Add</button>
+    </div>
+</div>

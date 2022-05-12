@@ -1,0 +1,22 @@
+
+<div *ngIf="!loginService.logged" style="width:100vw;height:100vh;background-color:rgba(0, 0, 0, 0.466); position:absolute;left:0px;top:0px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="card bg-dark text-center d-flex p-2 justify-content-center align-content-center shadow-lg" style="width:30vw;">
+        <h1 class="h3 mb-3 text-white font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" class="text-white sr-only">Email address</label>
+        <input [(ngModel)]="loginService.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <label for="inputPassword" class="text-white sr-only">Password</label>
+        <input [(ngModel)]="loginService.passWord" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <div class="checkbox mb-3">
+            <input type="checkbox" value="remember-me">
+            <label class="text-white">
+                Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-light btn-block mb-2" (click)="tryLogin()">Sign in</button>
+        <button class="btn btn-lg btn-secondary btn-block" (click)="register()">Register</button>
+    </div>
+</div>
+<div class="d-flex flex-row justify-content-center align-content-center">
+<app-modal (alertEmitter)="infoAlertHide()" style="display: none;"></app-modal>
+</div>
+<app-register (registerEvent)="tryLogin()" style="display: none;"></app-register>

@@ -1,0 +1,17 @@
+<div style="z-index: 0; width:100vw;height:100vh; position:absolute;left:0px;top:0px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="card col-5 shadow">
+        <div class="card-header text-center">
+            Edit Profile
+        </div>
+        <div class="form-group m-3">
+            <input class="form-control" [(ngModel)]="studentService.student.email" name="email" placeholder="Email">
+            <br>
+            <input class="form-control" [(ngModel)]="studentService.student.userName" name="userName" placeholder="Username">
+            <br>
+            <input class="form-control" [(ngModel)]="studentService.student.passWord" name="passWord" type="password" placeholder="Password">
+            <br>
+        </div>
+        <button class="btn btn-dark" (click)="updateStudent()">Edit</button>
+    </div>
+</div>
+

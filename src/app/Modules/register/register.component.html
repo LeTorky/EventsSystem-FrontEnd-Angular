@@ -1,0 +1,51 @@
+<div id="MainRegister" *ngIf="!loginService.logged" style="width:100vw;height:100vh;background-color:rgba(0, 0, 0, 0.696); position:absolute;left:0px;top:0px; display: flex; flex-direction: column; align-items: center; justify-content: center;" (click)="closeRegister($event)">
+    <div class="card bg-dark text-center d-flex p-2 justify-content-center align-content-center shadow-lg" style="width:50vw;">
+        <h1 class="h3 mb-3 text-white font-weight-normal">Register</h1>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item mx-3">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  As a Speaker
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="form-group m-3">
+                        <input class="form-control" [(ngModel)]="speakerService.speaker.email" name="email" placeholder="Email">
+                        <br>
+                        <input class="form-control" [(ngModel)]="speakerService.speaker.userName" name="userName" placeholder="Username">
+                        <br>
+                        <input class="form-control" [(ngModel)]="speakerService.passWord" name="passWord" type="password" placeholder="Password">
+                        <br>
+                        <input class="form-control" [(ngModel)]="speakerService.speaker.address.city" name="city" placeholder="City">
+                        <br>
+                        <input class="form-control" [(ngModel)]="speakerService.speaker.address.street" name="street" placeholder="Street">
+                        <br>
+                        <input class="form-control" [(ngModel)]="speakerService.speaker.address.building" name="building" placeholder="Building">
+                        <br>
+                        <button class="btn btn-dark" (click)="register('speaker')">Register</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mx-3">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  As a Student
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <input class="form-control" [(ngModel)]="studentService.student.email" name="email" placeholder="Email">
+                    <br>
+                    <input class="form-control" [(ngModel)]="studentService.student.userName" name="userName" placeholder="Username">
+                    <br>
+                    <input class="form-control" [(ngModel)]="studentService.student.passWord" name="passWord" type="password" placeholder="Password">
+                    <br>
+                    <button class="btn btn-dark" (click)="register('student')">Register</button>
+                </div>
+              </div>
+            </div>
+    </div>
+    <br>
+</div>

@@ -1,0 +1,41 @@
+<h4 class="text-center alert alert-warning shadow">Speakers</h4>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div *ngFor="let speaker of speakerService.speakers" class="accordion-item">
+    <h2 class="accordion-header" [id]="'flush-heading'+speaker._id">
+      <button class="accordion-button collapsed d-flex flex-column" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse'+speaker._id" aria-expanded="false" [attr.aria-controls]="'flush-collapse'+speaker._id">
+        <span>{{speaker.userName}}</span>
+      </button>
+    </h2>
+    <div [id]="'flush-collapse'+speaker._id" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-heading'+speaker._id" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body d-flex flex-column container-fluid align-content-center" style="background-color: #a3a3a3;">
+        <div class="card rounded bg-dark">
+            <table class="table table-hover table-dark rounded text-center">
+                <thead>
+                    <tr>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Street</th>
+                        <th>Building</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{speaker.userName}}</td>
+                        <td>{{speaker.email}}</td>
+                        <td>{{speaker.address.city}}</td>
+                        <td>{{speaker.address.street}}</td>
+                        <td>{{speaker.address.building}}</td>
+                        <td><a class="btn btn-light" [routerLink]="['Edit',speaker._id]">Edit</a></td>
+                        <td><a class="btn btn-secondary" (click)="showConfirm(speaker)">Remove</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-confirm (confirmEmitter)="confirm($event)" style="display: none;"></app-confirm>

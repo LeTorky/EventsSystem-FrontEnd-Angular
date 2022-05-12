@@ -1,0 +1,35 @@
+<h4 class="text-center alert alert-warning shadow">Students</h4>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div *ngFor="let student of studentService.students" class="accordion-item">
+    <h2 class="accordion-header" [id]="'flush-heading'+student._id">
+      <button class="accordion-button collapsed d-flex flex-column" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse'+student._id" aria-expanded="false" [attr.aria-controls]="'flush-collapse'+student._id">
+        <span>{{student.userName}}</span>
+      </button>
+    </h2>
+    <div [id]="'flush-collapse'+student._id" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-heading'+student._id" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body d-flex flex-column container-fluid align-content-center" style="background-color: #a3a3a3;">
+            <div class="card rounded bg-dark">
+                <table class="table table-hover table-dark rounded text-center">
+                    <thead>
+                        <tr>
+                            <th>UserName</th>
+                            <th>Email</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{student.userName}}</td>
+                            <td>{{student.email}}</td>
+                            <td><a class="btn btn-light" [routerLink]="['Edit',student._id]">Edit</a></td>
+                            <td><a class="btn btn-secondary" (click)="showConfirm(student)">Remove</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-confirm (confirmEmitter)="confirm($event)" style="display: none;"></app-confirm>

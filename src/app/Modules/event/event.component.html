@@ -1,0 +1,49 @@
+<h4 class="text-center alert alert-warning shadow">Events</h4>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div *ngFor="let event of eventService.events" class="accordion-item">
+    <h2 class="accordion-header" [id]="'flush-heading'+event._id">
+      <button class="accordion-button collapsed d-flex flex-column" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse'+event._id" aria-expanded="false" [attr.aria-controls]="'flush-collapse'+event._id">
+        <span>{{event.title}}</span>
+        <span class="text-secondary">{{event.date|date}}</span>
+      </button>
+    </h2>
+    <div [id]="'flush-collapse'+event._id" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-heading'+event._id" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body d-flex flex-column container-fluid align-content-center" style="background-color: #7a7a7a;">
+        <button *ngIf="this.loginService.role == 'Admin'" class="btn btn-dark shadow" [routerLink]="['Edit',event._id]">Edit</button>
+        <br>
+        <button *ngIf="this.loginService.role == 'Admin'" class="btn btn-secondary shadow" (click)="showConfirm(event)">Remove</button>
+        <br>
+        <button *ngIf="this.loginService.role == 'speakerModel' && event.accepted == false && event.mainRequesting == true" class="btn btn-dark shadow" (click)="acceptEvent(event._id,true)">Accept</button>
+        <br>
+        <button *ngIf="this.loginService.role == 'speakerModel'  && event.accepted == false && event.mainRequesting == true" class="btn btn-secondary shadow" (click)="acceptEvent(event._id,false)">Decline</button>
+        <br>
+        <div class="card text-center shadow" style="border-color: #000000; background-color: #000000; opacity: 85%;">
+          <div class="card-header text-white" style="background-color: #000000;border-bottom:2px solid gray;">
+            Main Speaker
+          </div>
+            <div class="text-white">{{event.mainSpeaker!= null ? event.mainSpeaker.userName : ""}}</div>
+        </div>
+        <br>
+        <div class="card text-center shadow" style="border-color: #000000; background-color: #000000; opacity: 85%;">
+          <div class="card-header text-white" style="background-color: #000000;border-bottom:2px solid gray;">
+            Other Speakers
+          </div>
+            <div class="text-white" *ngFor="let speaker of event.otherSpeakers; let i = index; let c = count;" [ngStyle]="i!=c-1?{'border-bottom':'1px solid gray'}:null">{{speaker.userName}}</div>
+        </div>
+        <br>
+        <div class="card text-center shadow" style="border-color: #000000; background-color: #000000; opacity: 85%;">
+          <div class="card-header text-white" style="background-color: #000000;border-bottom:2px solid gray;">
+            Students
+          </div>
+            <div class="text-white" *ngFor="let student of event.students; let i = index; let c = count;" [ngStyle]="i!=c-1?{'border-bottom':'1px solid gray'}:null">{{student.userName}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div style="display: flex; flex-direction: column; align-items: center; align-content: center;">
+<button *ngIf="this.loginService.role == 'Admin'" class="btn btn-success text-center" style="width:40px;" (click)="showAdd()">+</button>
+</div>
+<app-confirm (confirmEmitter)="confirm($event)" style="display: none;"></app-confirm>
+<app-add-event style="display: none;"></app-add-event>

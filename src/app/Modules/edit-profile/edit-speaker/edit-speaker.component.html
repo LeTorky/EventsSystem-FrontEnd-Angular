@@ -1,0 +1,23 @@
+<div style="z-index: 0; width:100vw;height:100vh; position:absolute;left:0px;top:0px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="card col-5 shadow">
+        <div class="card-header text-center">
+            Edit Profile
+        </div>
+        <div class="form-group m-3">
+            <input class="form-control" [(ngModel)]="speakerService.speaker.email" name="email" placeholder="Email">
+            <br>
+            <input class="form-control" [(ngModel)]="speakerService.speaker.userName" name="userName" placeholder="Username">
+            <br>
+            <input class="form-control" [(ngModel)]="speakerService.passWord" name="passWord" type="password" placeholder="Password">
+            <br>
+            <input class="form-control" [(ngModel)]="speakerService.speaker.address.city" name="city" placeholder="City">
+            <br>
+            <input class="form-control" [(ngModel)]="speakerService.speaker.address.street" name="street" placeholder="Street">
+            <br>
+            <input class="form-control" [(ngModel)]="speakerService.speaker.address.building" name="building" placeholder="Building">
+            <br>
+        </div>
+        <button class="btn btn-dark" (click)="updateSpeaker()">Edit</button>
+    </div>
+</div>
+
